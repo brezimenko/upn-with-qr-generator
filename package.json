@@ -1,0 +1,35 @@
+{
+  "name": "upn-with-qr-generator",
+  "version": "1.0.0",
+  "description": "A UPN + QR code generator for Slovenian banking system",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "prepare": "npm run build"
+  },
+  "files": [
+    "dist",
+    "assets"
+  ],
+  "keywords": [
+    "UPN",
+    "QR code",
+    "banking",
+    "Slovenia",
+    "payments"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^2.9.0",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/qrcode": "^1.5.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}
