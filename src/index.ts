@@ -11,7 +11,7 @@ const upnData = {
     receiverPost: '2000 Maribor',
     receiverIban: 'SI56020170014356205',
     amount: 300.24,
-    code: 'RENT',
+    code: 'OTHR',
     reference: 'SI121234567890120',
     purpose: 'Plačilo najemnine za marec',
     dueDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10).replace(/-/g, '')
