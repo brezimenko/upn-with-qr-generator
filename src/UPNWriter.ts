@@ -98,11 +98,11 @@ class UPNWriter {
     }
 
     private getReferencePrefix(reference: string): string {
-        return reference.slice(0, 2);
+        return reference.slice(0, 4);
     }
 
     private getReferenceSuffix(reference: string): string {
-        return reference.slice(2);
+        return reference.slice(4);
     }
 
     private formatDate(date: string): string {
