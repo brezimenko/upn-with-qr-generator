@@ -43,15 +43,20 @@ class UPNWriter {
         context.fillText(data.receiverAddress, 418, 538);
         context.fillText(data.receiverPost, 418, 570);
         context.fillText(data.receiverIban, 418, 400);
-        context.fillText(this.getReferencePrefix(data.reference), 418, 451);
-        context.fillText(this.getReferenceSuffix(data.reference), 528, 451);
+        
+        // Handle receiver reference (new structure with fallback to legacy)
+        const receiverRef = data.receiverReference || data.reference || '';
+        context.fillText(this.getReferencePrefix(receiverRef), 418, 451);
+        context.fillText(this.getReferenceSuffix(receiverRef), 528, 451);
+        
         context.fillText(data.purpose, 528, 340);
         context.fillText(data.code, 418, 340);
         context.fillText('***' + this.formatAmount(data.amount), 750, 285);
 
-        if (data.dueDate) {
-            const formattedDate = this.formatDate(data.dueDate);
-            context.fillText(formattedDate, 1155, 340);
+        // Handle payment date (new DD.MM.YYYY format vs legacy YYYYMMDD)
+        const paymentDate = data.paymentDate || this.convertLegacyDate(data.dueDate);
+        if (paymentDate) {
+            context.fillText(paymentDate, 1155, 340);
         }
 
         // Small text fields
@@ -63,15 +68,12 @@ class UPNWriter {
         context.fillText(data.receiverAddress, 30, 430);
         context.fillText(data.receiverPost, 30, 455);
         context.fillText(data.receiverIban, 30, 300);
-        context.fillText(data.reference, 30, 351);
+        context.fillText(receiverRef, 30, 351);
         context.fillText(data.purpose, 30, 165);
 
-        if (data.dueDate) {
-            const formattedDate = this.formatDate(data.dueDate);
-            context.fillText(formattedDate, 30, 195);
+        if (paymentDate) {
+            context.fillText(paymentDate, 30, 180);
         }
-
-        context.fillText('***' + this.formatAmount(data.amount), 110, 247);
 
         return canvas;
     }
@@ -111,6 +113,13 @@ class UPNWriter {
 
     private formatAmount(amount: number): string {
         return amount.toFixed(2);
+    }
+
+    private convertLegacyDate(date?: string): string {
+        if (!date || date.length !== 8) {
+            return '';
+        }
+        return `${date.slice(6, 8)}.${date.slice(4, 6)}.${date.slice(0, 4)}`;
     }
 }
 

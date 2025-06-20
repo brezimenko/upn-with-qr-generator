@@ -24,10 +24,10 @@ const upnData = {
   receiverName: 'RentaCar d.o.o.',
   receiverAddress: 'Pohorska ulica 22',
   receiverPost: '2000 Maribor',
-  receiverIban: 'SI56020170014356205',
+  receiverIban: 'SI56040010019981506',
   amount: 300.24,
   code: 'RENT',
-  reference: 'SI121234567890120',
+  reference: 'SI99',
   purpose: 'Plačilo najemnine za marec',
   dueDate: '20231001'  // Format YYYYMMDD
 };
