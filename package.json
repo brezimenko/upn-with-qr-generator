@@ -1,6 +1,6 @@
 {
   "name": "upn-with-qr-generator",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A UPN + QR code generator for Slovenian banking system (2024 standard compliant) with environment-aware canvas support and isPNGGenerationAvailable method",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
