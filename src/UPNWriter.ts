@@ -22,7 +22,10 @@ class UPNWriter {
             
             // Register the Courier Bold font only when canvas is available
             try {
-                registerFont(path.join(__dirname, '../assets/courbd.ttf'), { family: 'Courier Bold' });
+                // Use require.resolve to find the correct package location
+                const packageRoot = path.dirname(require.resolve('upn-with-qr-generator/package.json'));
+                const fontPath = path.join(packageRoot, 'assets', 'courbd.ttf');
+                registerFont(fontPath, { family: 'Courier Bold' });
             } catch (fontError: any) {
                 console.warn('Could not register Courier Bold font:', fontError instanceof Error ? fontError.message : String(fontError));
             }
@@ -42,7 +45,9 @@ class UPNWriter {
             );
         }
 
-        const templatePath = path.join(__dirname, '../assets/upn_sl.png');
+        // Use require.resolve to find the correct package location
+        const packageRoot = path.dirname(require.resolve('upn-with-qr-generator/package.json'));
+        const templatePath = path.join(packageRoot, 'assets', 'upn_sl.png');
         const templateImage = await this.canvas.loadImage(templatePath);
 
         const canvas = this.canvas.createCanvas(templateImage.width, templateImage.height);
